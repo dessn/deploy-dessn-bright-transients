@@ -1,1 +1,1 @@
-# des-bright-transients-deploy
+# dessn-bright-transients-deploy
