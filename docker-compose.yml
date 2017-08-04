@@ -1,0 +1,19 @@
+version: '2'
+services:
+    app:
+        build: ./app
+        command: gunicorn pub:app -b :8000 --name pub:app --log-level=debug --log-file=-
+        environment:
+            - ATC_STATIC_URL_PATH=/static
+        expose:
+            - "8000"
+        restart: always
+        working_dir: /opt/atc/app
+    server:
+        build: .
+        command: nginx -g "daemon off;"
+        links:
+            - app:app
+        ports:
+            - "80:80"
+        restart: always
